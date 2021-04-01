@@ -9,7 +9,7 @@ Book Information API is an API that is used to control and manage the books and 
 ![alt text](https://storee-api.000webhostapp.com/public/assets/product_image/database-design.png)
 
 
-## Aplication Screenshot
+## Aplication Screenshots
 
 <p align="center">
   <img src="https://storee-api.000webhostapp.com/public/assets/product_image/ssApp1.PNG" width="350" title="hover text">
