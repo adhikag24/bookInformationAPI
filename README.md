@@ -11,7 +11,7 @@ Book Information API is an API that is used to control and manage the books and 
 
 ## Aplication Screenshot
 
-![alt text](https://storee-api.000webhostapp.com/public/assets/product_image/ssApp1.png)
+![ss1](https://storee-api.000webhostapp.com/public/assets/product_image/ssApp1.png)
 
 
 ## Full API Documentation Link:
