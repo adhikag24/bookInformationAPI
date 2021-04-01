@@ -50,7 +50,8 @@ Route::group([
 });
 
 
-Route::get('book/get_book_list/{slug}', 'AdminController@login');
-Route::post('book/get_book_filter', 'BookController@filter');
+Route::get('book/list', 'BookController@index');
+Route::get('book/detail/{id}', 'BookController@show');
+Route::post('book/filter', 'BookController@filter');
 
-Route::post('book/get_writer_list/{id}', 'WriterController@login');
+Route::get('writer/list', 'WriterController@index');

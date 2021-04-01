@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\WriterModel;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,19 @@ class WriterController extends Controller
      */
     public function index()
     {
-        //
+        $data = WriterModel::with('books')->get()->toArray();
+
+        if($data){
+            $status = 200;
+            $response['error'] = false;
+            $response['data'] = $data;
+        }else{
+            $status = 404;
+            $response['error'] = true;
+            $response['message'] = 'Daftar buku tidak ditemukan';
+        }
+
+        return response()->json($response,$status);
     }
 
     /**
