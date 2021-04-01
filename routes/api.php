@@ -52,6 +52,6 @@ Route::group([
 
 Route::get('book/list', 'BookController@index');
 Route::get('book/detail/{id}', 'BookController@show');
-Route::post('book/filter', 'BookController@filter');
+Route::post('book/filter/{whatToFilter}', 'BookController@filter');
 
 Route::get('writer/list', 'WriterController@index');

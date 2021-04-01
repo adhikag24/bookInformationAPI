@@ -59,7 +59,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $data = BookModel::with('writer')->where('book_id',$id)->get()->toArray();
+        $data = BookModel::find($id);
 
         if($data){
             $status = 200;
@@ -74,24 +74,19 @@ class BookController extends Controller
         return response()->json($response,$status);
     }
 
-    public function filter(Request $request){
+    public function filter(Request $request, $whatToFilter){
 
 
         Validator::make($request->all(), [
-            'whatToFilter' => 'required|string',
             'filter' => 'required|string',
         ])->validate();
 
         $requestData = $request->all();
 
-
-        if($requestData['whatToFilter'] == 'title'){
+        if($whatToFilter == 'title'){
             $data = BookModel::where('book_title','like', '%'.$requestData['filter'].'%')->get()->toArray();
-        }else if($requestData['whatToFilter'] == 'writer'){
-
-            $writerId = WriterModel::select('writer_id')->where('writer_name', $requestData['filter'])->first()['writer_id'];
-
-            $data = BookModel::where('writer_id', $writerId)->get()->toArray();
+        }else if($whatToFilter == 'writer'){
+            $data = WriterModel::with('books')->where('writer_name', $requestData['filter'])->first();
         }else{
             $data = [];
         }
@@ -99,7 +94,7 @@ class BookController extends Controller
         if($data){
             $status = 200;
             $response['error'] = false;
-            $response['data'] = $data;
+            $response['data'] = $data->books;
         }else{
             $status = 404;
             $response['error'] = true;
