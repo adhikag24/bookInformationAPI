@@ -11,12 +11,15 @@ Book Information API is an API that is used to control and manage the books and 
 
 ## Aplication Screenshot
 
-![ss1](https://storee-api.000webhostapp.com/public/assets/product_image/ssApp1.PNG)
-![alt text](https://storee-api.000webhostapp.com/public/assets/product_image/ssApp2.PNG)
-![alt text](https://storee-api.000webhostapp.com/public/assets/product_image/ssApp3.PNG)
-![alt text](https://storee-api.000webhostapp.com/public/assets/product_image/ssApp4.PNG)
-![alt text](https://storee-api.000webhostapp.com/public/assets/product_image/ssApp5.PNG)
-![alt text](https://storee-api.000webhostapp.com/public/assets/product_image/ssApp6.PNG)
+<p align="center">
+  <img src="https://storee-api.000webhostapp.com/public/assets/product_image/ssApp1.PNG" width="350" title="hover text">
+  <img src="https://storee-api.000webhostapp.com/public/assets/product_image/ssApp2.PNG" width="350" alt="accessibility text">
+  <img src="https://storee-api.000webhostapp.com/public/assets/product_image/ssApp3.PNG" width="350" alt="accessibility text">
+  <img src="https://storee-api.000webhostapp.com/public/assets/product_image/ssApp4.PNG" width="350" alt="accessibility text">
+  <img src="https://storee-api.000webhostapp.com/public/assets/product_image/ssApp5.PNG" width="350" alt="accessibility text">
+  <img src="https://storee-api.000webhostapp.com/public/assets/product_image/ssApp6.PNG" width="350" alt="accessibility text">
+</p>
+
 
 
 ## Full API Documentation Link:
