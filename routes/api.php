@@ -49,9 +49,30 @@ Route::group([
 
 });
 
+Route::group([
+    'prefix' => 'book'
 
-Route::get('book/list', 'BookController@index');
-Route::get('book/detail/{id}', 'BookController@show');
-Route::post('book/filter/{whatToFilter}', 'BookController@filter');
+], function ($router) {
+    Route::get('list', 'BookController@index');
+    Route::get('detail/{id}', 'BookController@show');
+    Route::post('filter/{whatToFilter}', 'BookController@filter');
+});
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'admin'
+], function ($router) {
+    // Route::post('book/create_book', 'BookController@store');
+    Route::get('detail/{id}', 'BookController@show');
+    Route::post('filter/{whatToFilter}', 'BookController@filter');
+});
+Route::post('admin/book/create', 'BookController@store');
+
+
+
+// Route::get('book/list', 'BookController@index');
+// Route::get('book/detail/{id}', 'BookController@show');
+// Route::post('book/filter/{whatToFilter}', 'BookController@filter');
 
 Route::get('writer/list', 'WriterController@index');

@@ -40,15 +40,37 @@ class BookController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'book_title' => 'required|string',
+            'book_page' => 'required|integer',
+            'book_release' => 'required|string',
+            'book_contents' => 'required|string',
+            'writers' => 'required'
+        ])->validate();
+
+        if ($validator->fails()) {
+            return response(['error' => $validator->errors(), 'Validation Error']);
+        }
+
+        $requestData = $request->all();
+
+        print_r($requestData);
+        die;
+    
+        if($data){
+            $status = 200;
+            $response['error'] = false;
+            $response['data'] = $data->books;
+        }else{
+            $status = 404;
+            $response['error'] = true;
+            $response['message'] = 'Daftar buku tidak ditemukan';
+        }
+
+        // return response()->json($response,$status);
     }
 
     /**
