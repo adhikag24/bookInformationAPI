@@ -21,58 +21,31 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group([
-    'middleware' => 'api',
     'prefix' => 'auth'
-
 ], function ($router) {
-
-    Route::post('register', 'JWTAuthController@register');
-    Route::post('login', 'JWTAuthController@login');
-    Route::post('logout', 'JWTAuthController@logout');
-    Route::post('refresh', 'JWTAuthController@refresh');
-    Route::get('profile', 'JWTAuthController@profile');
-
+    Route::post('register', 'UserController@register');
+    Route::post('login', 'UserController@authenticate');
 });
 
-
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
-
-], function ($router) {
-
-    Route::post('register', 'JWTAuthController@register');
-    Route::post('login', 'JWTAuthController@login');
-    Route::post('logout', 'JWTAuthController@logout');
-    Route::post('refresh', 'JWTAuthController@refresh');
-    Route::get('profile', 'JWTAuthController@profile');
-
-});
-
+//routes group below are open to public, no need Admin Authentication.
 Route::group([
     'prefix' => 'book'
-
 ], function ($router) {
     Route::get('list', 'BookController@index');
     Route::get('detail/{id}', 'BookController@show');
     Route::post('filter/{whatToFilter}', 'BookController@filter');
 });
 
-
 Route::group([
-    'middleware' => 'api',
     'prefix' => 'admin'
 ], function ($router) {
-    // Route::post('book/create_book', 'BookController@store');
-    Route::get('detail/{id}', 'BookController@show');
-    Route::post('filter/{whatToFilter}', 'BookController@filter');
+    Route::post('book/create', 'BookController@store');
+    Route::put('book/update/{id}', 'BookController@update');
+    Route::delete('book/delete/{id}', 'BookController@destroy');
+
+    Route::post('writer/create', 'WriterController@store');
+    Route::put('writer/update/{id}', 'WriterController@update');
+    Route::delete('writer/delete/{id}', 'WriterController@destroy');
 });
-Route::post('admin/book/create', 'BookController@store');
-
-
-
-// Route::get('book/list', 'BookController@index');
-// Route::get('book/detail/{id}', 'BookController@show');
-// Route::post('book/filter/{whatToFilter}', 'BookController@filter');
 
 Route::get('writer/list', 'WriterController@index');

@@ -17,8 +17,8 @@ class CreateBwRelationsTable extends Migration
             $table->id();
             $table->bigInteger('book_id')->unsigned();
             $table->bigInteger('writer_id')->unsigned();
-            $table->foreign('book_id')->references('id')->on('books');
-            $table->foreign('writer_id')->references('id')->on('writers');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');;
+            $table->foreign('writer_id')->references('id')->on('writers')->onDelete('cascade');;
         });
     }
 

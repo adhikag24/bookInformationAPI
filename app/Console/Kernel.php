@@ -27,6 +27,11 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
     }
 
+    protected $routeMiddleware = [
+        'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
+    ];
+
+
     /**
      * Register the commands for the application.
      *

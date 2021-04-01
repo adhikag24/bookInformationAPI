@@ -13,4 +13,8 @@ class WriterModel extends Model
     {
         return $this->belongsToMany(BookModel::class, 'bw_relations', 'id', 'book_id');
     }
+
+    protected $fillable = [
+        'writer_name', 'writer_age'
+    ];
 }
