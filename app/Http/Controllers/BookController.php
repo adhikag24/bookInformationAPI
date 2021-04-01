@@ -19,7 +19,7 @@ class BookController extends Controller
 
     public function __construct()
     {
-        $this->middleware('jwt.verify', ['except' => ['index', 'show']]);
+        $this->middleware('jwt.verify', ['except' => ['index', 'show', 'filter']]);
     }
 
     public function index()
@@ -139,7 +139,7 @@ class BookController extends Controller
         return response()->json($response,$status);
     }
 
-    public function filter(Request $request, $whatToFilter){
+    public function filter(Request $request, $filterBy){
      
 
 
@@ -149,10 +149,16 @@ class BookController extends Controller
 
         $requestData = $request->all();
 
-        if($whatToFilter == 'title'){
-            $data = BookModel::where('book_title','like', '%'.$requestData['filter'].'%')->get()->toArray();
-        }else if($whatToFilter == 'writer'){
-            $data = WriterModel::with('books')->where('writer_name', $requestData['filter'])->first();
+        if($filterBy == 'title'){
+            $data = BookModel::select('id','book_title','book_page','book_release')->where('book_title','like', '%'.$requestData['filter'].'%')->get()->toArray();
+        }else if($filterBy == 'writer'){
+            $writerData = WriterModel::with('books')->where('writer_name', $requestData['filter'])->first();
+            if($writerData != null){
+                $writerData = $writerData->toArray();
+                $data = (array_key_exists('books',$writerData)) ? $writerData['books']: null;
+            }else{
+                $data = null;
+            }
         }else{
             $data = [];
         }
@@ -160,7 +166,7 @@ class BookController extends Controller
         if($data){
             $status = 200;
             $response['error'] = false;
-            $response['data'] = $data->books;
+            $response['data'] = $data;
         }else{
             $status = 404;
             $response['error'] = true;
@@ -245,7 +251,7 @@ class BookController extends Controller
 
         $check = false;
         
-        if($bookData){
+        if(isset($bookData)){
             try {
                 BookModel::destroy($id);
                 

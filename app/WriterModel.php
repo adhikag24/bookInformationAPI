@@ -11,7 +11,7 @@ class WriterModel extends Model
 
     public function books()
     {
-        return $this->belongsToMany(BookModel::class, 'bw_relations', 'id', 'book_id');
+        return $this->belongsToMany(BookModel::class, 'bw_relations', 'id', 'book_id')->select(['book_title', 'book_release', 'book_page']);
     }
 
     protected $fillable = [

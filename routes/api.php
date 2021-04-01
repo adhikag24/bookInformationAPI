@@ -33,8 +33,11 @@ Route::group([
 ], function ($router) {
     Route::get('list', 'BookController@index');
     Route::get('detail/{id}', 'BookController@show');
-    Route::post('filter/{whatToFilter}', 'BookController@filter');
+    Route::post('filter/{filterBy}', 'BookController@filter');
 });
+
+Route::get('writer/list', 'WriterController@index');
+Route::get('writer/detail/{id}', 'WriterController@show');
 
 Route::group([
     'prefix' => 'admin'
@@ -48,4 +51,3 @@ Route::group([
     Route::delete('writer/delete/{id}', 'WriterController@destroy');
 });
 
-Route::get('writer/list', 'WriterController@index');
